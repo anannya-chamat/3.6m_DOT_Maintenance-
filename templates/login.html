@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- BODY HERE -->
+        <div class="container-2">
+            <div class="user-section">
+                <div class="gallery-section">
+                    <div class="r">
+                        <a href="https://www.aries.res.in/index.php/facilities/astronomical-telescopes/360cm-telescope/telescope" data-lightbox="gallery" data-title="Image 2">
+                            <div class="login-img" style="position: relative; height: 200px; width: 450px; margin: -65px 0 20px 0; background-image: url('{% static "assets/3.6m DOT.jpg" %}'); background-size: cover; border: 2px solid #fff; border-radius: 10px;">
+                                <p>3.6m DOT</p>
+                            </div>
+                        </a>
+                    </div>
+                    <h2>User Login/Sign Up</h2>
+                </div>
+        
+                <form action="/login/" method="post">
+                    {% csrf_token %}
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+        
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <input type="submit" value="Log In">
+                </form>
+
+
+                <p style="margin-top: 10px;">New user? <a href="{% url 'signup' %}">Sign up here</a></p>
+
+            </div>
+        </div>
+</body>
+
+
+{% endblock %}

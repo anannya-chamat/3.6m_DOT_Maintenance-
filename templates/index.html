@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- BODY HERE -->
+        <div class="container-1">
+            <div class="home-main">
+                <main>
+                    <h1 style="font-size:33px;"> Mechanical Systems Care Framework for 3.6m DOT</h1>
+                    <h3 style="font-size: large"> Where Precision Meets Performance!</h3>
+                    <p>Welcome to Mechanical Systems Care for 3.6m DOT! Our website streamlines maintenance processes,
+                        ensuring optimal performance for the precision-driven mechanical systems of the telescope. Stay
+                        updated with important announcements, log in or sign up to access personalized features, and
+                        explore detailed system information. Manage scheduled maintenance tasks, track due dates, and assign 
+                        responsible technicians. Enter maintenance data, and maintain a comprehensive maintenance history.</p>
+                </main>
+                <div class="main-bottom">
+                    <div class="home-img">
+                        <div class="carousel-container">
+                            <img class="carousel-image active" src=" {% static 'assets/3.6mDOT-night.jpg'%} " alt="Image 1">
+                            <img class="carousel-image" src=" {% static 'assets/DevasthalObservatory.jpg'%} " alt="Image 2">
+                            <img class="carousel-image" src="{% static 'assets/nightbuilding.jpg'%}" alt="Image 3">
+                            <img class="carousel-image" src="{% static 'assets/extn-building.jpg'%}" alt="Image 4">
+                    
+                            <span class="carousel-arrow left" onclick="changeImage(-1)">&#10094;</span>
+                            <span class="carousel-arrow right" onclick="changeImage(1)">&#10095;</span>
+                        </div>
+                    </div>
+                    <div class="announcement-box">
+                        <h5 class="h5">News and Updates</h5>
+                        <div class="announcement-content">
+                            <a href="https://example1.com">Announcement 1</a><br>
+                            <a href="https://example2.com">Announcement 2</a><br>
+                            <a href="https://example3.com">Announcement 3</a><br>
+                            <!-- Add more announcements here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let currentImageIndex = 0;
+            const carouselImages = document.querySelectorAll('.carousel-image');
+    
+            function changeImage(n) {
+                currentImageIndex += n;
+                if (currentImageIndex >= carouselImages.length) {
+                    currentImageIndex = 0;
+                } else if (currentImageIndex < 0) {
+                    currentImageIndex = carouselImages.length - 1;
+                }
+    
+                showImage(currentImageIndex);
+            }
+    
+            function showImage(index) {
+                carouselImages.forEach((image) => {
+                    image.classList.remove('active');
+                });
+                carouselImages[index].classList.add('active');
+            }
+    
+            setInterval(() => {
+                changeImage(1);
+            }, 5000);
+        </script>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var dropdowns = document.querySelectorAll('.navbar > li');
+                dropdowns.forEach(function (dropdown) {
+                    dropdown.addEventListener('mouseenter', function () {
+                        this.querySelector('ul').style.display = 'block';
+                    });
+                    dropdown.addEventListener('mouseleave', function () {
+                        this.querySelector('ul').style.display = 'none';
+                    });
+                });
+            });
+        </script>
+
+        {% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ <!-- BODY HERE ------------------------ -->
+ <div class="content-container">
+    <h1>Maintenance Data Entry</h1>
+    
+    <form action="" method="POST" style="display: flex;">
+      <div class="form-entry">
+          <label for="system">Select System:</label>
+          <select name="system" id="system" required>
+              <option value="">Select a system</option>
+              <option value="system1">Ground Floor Systems</option>
+              <option value="system2">7m System</option>
+              <option value="system3">11m System</option>
+              <option value="system4">Dome System</option>
+              <option value="system5">Ext. Building System</option>
+          </select>
+          <br><br>
+  
+          <label for="task-details">Task Details:</label>
+          <input type="text" id="task-details" name="task-details" placeholder="Enter task details" required>
+          <br><br>
+  
+          <label for="completion-date">Completion Date:</label>
+          <input type="date" id="completion-date" name="completion-date" required>
+          <br><br>
+  
+          <label for="User">Responsible User:</label>
+          <input type="text" id="User" name="User" placeholder="Enter User's name" required>
+          <br><br>
+  
+          <label for="notes">Additional Notes:</label>
+          <textarea id="notes" name="notes" placeholder="Enter additional notes"></textarea>
+          <br><br>
+      </div>
+      <input type="submit" value="Submit">
+  </form>
+  
+          </div>
+
+{% endblock %}

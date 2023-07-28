@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ {% comment %} -----------------------------------BODY HERE ---------------------------------------- {% endcomment %}
+        <div class="content-container">
+            <h1>Help and Support</h1>
+
+            <h3>Contact Information:</h3>
+            <div class="profile-card">
+                <div class="profile-info">
+                    <p><strong>Dr. Tarun Bangia</strong> </p>
+                    <p><strong>Engineer-F
+                        </strong> </p>
+                    <p><strong>Mechanical
+                        </strong> </p>
+                    <p>
+                        <span class="material-symbols-outlined">
+                            mail
+                        </span>
+                        <a href="mailto:bangia@aries.res.in">
+                            bangia@aries.res.in</a>
+                    </p>
+                    <p>
+                        <span class="material-symbols-outlined">
+                            call
+                        </span>
+                        <a href="tel:+915942270802">
+                            +91-5942-270-802 </a>
+
+                    </p>
+                </div>
+                <div class="profile-image">
+                    <img src=" {% static "assets/dr-tarun.jpg" %} " alt="User Image">
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}

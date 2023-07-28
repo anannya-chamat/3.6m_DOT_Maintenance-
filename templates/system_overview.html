@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- BODY HERE -->
+<div class="system-overview-container">
+    <h1>System Overview</h1>
+    <div class="system-card">
+        <div class="system-card-item">
+            <img src= "{% static "assets/pnumatic-sys.jpg" %}" alt="System 1">
+            <a href="{% url 'ground_floor' %}">
+                <h3>Ground Floor Systems</h3>
+              </a>                
+            </div>
+        <div class="system-card-item">
+            <img src= "{% static "assets/7m-sys.jpg" %}"  alt="System 2">
+            <a href="{% url '7m' %}">
+                <h3>7m System</h3>
+              </a>                
+            </div>
+        <div class="system-card-item">
+            <img src="{% static "assets/11m-sys.jpg" %}" lt="System 3">
+            <a href="{% url '11m' %}">
+                <h3>11m System</h3>
+              </a>                
+            </div>
+        <div class="system-card-item">
+            <img src="{% static "assets/dome.jpg" %}"  alt="System 4">
+            <a href="{% url 'dome' %}">
+
+                <h3>Dome System</h3>
+              </a>                
+            </div>
+        <div class="system-card-item">
+            <img src="{% static "assets/extn-building.jpg"  %}" alt="System 5">
+            <a href="{% url 'extbuilding' %}">
+                <h3>Ext. Building System</h3>
+              </a>                
+            </div>
+    </div>
+</div>
+
+{% endblock %}

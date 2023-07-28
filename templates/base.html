@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}3.6mDOT Mech_Care{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="structure-body" style="width: 82%; margin: 0 auto; background-color: black;">
+
+    <div class="top_menu_section">
+        <!--MENU BAR-->
+        <div class="headerSection">
+            <div class="container">
+                <div class="row">
+                    <div class="left-section col-md-9">
+                        <a href="https://www.aries.res.in" target="_blank">
+                            <img src="{% static 'assets/aries_logo_auto_6_3_1.png' %}" alt="ARIES Logo">
+                        </a>
+                    </div>
+                    <div class="right-section col-md-3">
+                        <a href="https://dst.gov.in" target="_blank">
+                            <img src="{% static 'assets/azadi_ka_logo.png' %}" alt="Azadi Ka Logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <ul class="navbar">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'system_overview' %}">System Overview</a></li>
+            <li><a href="{% url 'maintenance_schedule' %}">Maintenance Schedule</a></li>
+            <li><a href="{% url 'maintenance_data_entry' %}">Maintenance Data Entry</a></li>
+            <li><a href="{% url 'help_support' %}">Help and Support</a></li>
+            {% if user.is_authenticated %}
+        <li id="logout"><a href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+        <li id="login-signup"><a href="{% url 'login' %}">Login/Signup</a></li>
+    {% endif %}
+            {% comment %} <li id="login-signup"><a href="{% url 'login' %}">Login/Signup</a></li> 
+            <li id="logout"><a href="{% url 'login' %}">Logout</a></li> {% endcomment %}
+        </ul>
+
+    </div>
+
+    <!-- Content block for individual pages -->
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer id="footer" class="footer">
+        <div class="footer-content">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="before-footer clearfix area">
+                                    <div>
+                                        <div id="block-footeraddress"
+                                            class="block block-block-content block-block-content286b23e4-6c26-4d34-a090-a607de615c9a no-title">
+                                            <div class="content block-content">
+                                                <div
+                                                    class="field field--name-body field--type-text-with-summary field--label-hidden field__item">
+                                                    <p class="text-align-center">
+                                                        Aryabhatta Research Institute of Observational Sciences
+                                                        (ARIES)<br /> (An Autonomous Institute under the Department
+                                                        of Science &amp;Technology, Govt. of India)<br /> Manora
+                                                        Peak, Nainital-263001,
+                                                        Uttarakhand, India<br />
+                                                        <strong>Phone:</strong> +91-5942-270700 (Reception)&nbsp;
+                                                        <strong>Fax:</strong> +91-5942-233439
+                                                    </p>
+                                                    <br>
+                                                    <p>© Copyright 2023, ARIES Nainital, Uttarakhand, India.</p>
+                                                    <br>
+                                                    <p>Developed by <a href="https://www.linkedin.com/in/anannya-chamat/"> Anannya Chamat</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-top -->
+            </div>
+        </div>
+        <!-- footer -->
+    </footer>
+    <script src="{% static 'js/script.js' %}" ></script>
+</body>
+</html>
