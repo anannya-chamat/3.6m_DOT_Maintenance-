@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="signup-content">
+  <h1 style="padding: 15px 10px 10px 10px">Dome Maintenance</h1>
+</div>
+<table style="margin-top: 0px">
+  <tr>
+    <th>Levels</th>
+    <th>Units</th>
+    <th>Failure Mode</th>
+    <th>Maintenance</th>
+  </tr>
+  {% for component in dome_maintenance %}
+  <tr>
+    <td>{{ component.levels }}</td>
+    <td>{{ component.units }}</td>
+    <td>{{ component.failure_mode }}</td>
+    <td>{{ component.maintenance }}</td>
+    
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
