@@ -5,25 +5,27 @@
   <div class="system-card">
     <div class="system-card-item">
       <img src= "{% static "assets/pnumatic-sys.jpg" %}" alt="System 1">
-      <a href="{% url 'ground_floor' %}">
-        <h3>Pnumatic System</h3>
+      <a href="{% url 'gf_pnumatical' %}">
+        <h3>Pnumatical Systems</h3>
       </a>
     </div>
+    
     <div class="system-card-item">
       <img src= "{% static "assets/chilling-sys.jpg" %}" alt="System 2">
-      <a href="{% url '7m' %}">
-        <h3>Chilling System</h3>
+      <a href="{% url 'gf_cooling' %}">
+        <h3>Cooling System</h3>
       </a>
     </div>
     <div class="system-card-item">
       <img src="{% static "assets/hydraulic-sys.jpg" %}" lt="System 3">
-      <a href="{% url '11m' %}">
+      <a href="{% url 'gf_hydraulic' %}">
         <h3>Hydraulic System</h3>
       </a>
     </div>
+    
     <div class="system-card-item">
       <img src="{% static "assets/main.png" %}" alt="System 4">
-      <a href="{% url 'dome' %}">
+      <a href="{% url 'gf_maintenance' %}">
         <h3>Ground Floor Maintenance</h3>
       </a>
     </div>
