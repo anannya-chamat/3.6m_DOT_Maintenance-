@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as loginUser
 from django.contrib.auth import logout as logoutUser
-from .models import DOTComponents,DOT_Maintenance
+from .models import DOTComponents, DOT_Maintenance, DOT_Systems
 import sqlite3
 
 
@@ -123,3 +123,51 @@ def gf_maintenance(request):
     connection.close()
 
     return render(request, 'gf_maintenance.html',{"gf_maintenance":row_list})
+
+def seven_system(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Components, Replacement_Due, Failure_Mode FROM DOT_Systems where Floor = '7m '")
+    row_list = []
+    for x in rows:
+        obj = DOT_Systems(x[0],x[1],x[2],x[3],x[4])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, '7m_system.html',{"gf_data":row_list})
+
+def seven_maintenance(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT * FROM DOT_Maintenance where levels like '%7%'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Maintenance(x[0],x[1],x[2],x[3])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, '7m_maintenance.html',{"7m_maintenance":row_list})
+
+def eleven_system(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Components, Replacement_Due, Failure_Mode FROM DOT_Systems where Floor = '11m '")
+    row_list = []
+    for x in rows:
+        obj = DOT_Systems(x[0],x[1],x[2],x[3],x[4])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, '11m_system.html',{"gf_data":row_list})
+
+def eleven_maintenance(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT * FROM DOT_Maintenance where levels like '%11%'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Maintenance(x[0],x[1],x[2],x[3])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, '11m_maintenance.html',{"11m_maintenance":row_list})
