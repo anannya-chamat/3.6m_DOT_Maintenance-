@@ -1,10 +1,23 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-{% block content %}
+<div class="system-overview-container">
+  <h1>7m Systems</h1>
+    <div class="system-card" style="justify-content: center;">
 
-<div class="signup-content">
+    <div class="system-card-item">
+      <img src= "{% static "assets/system.png" %}" alt="System 1">
+      <a href="{% url '7m_system' %}">
+        <h3>Systems</h3>
+      </a>
     </div>
 
+    <div class="system-card-item">
+      <img src="{% static "assets/main.png" %}" alt="System 2">
+      <a href="{% url '7m_maintenance' %}">
+        <h3>7m Maintenance</h3>
+      </a>
+    </div>
+  </div>
+</div>
 
-{% endblock%}
+{% endblock %}
