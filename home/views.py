@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as loginUser
 from django.contrib.auth import logout as logoutUser
+from .models import DOTComponents,DOT_Maintenance
+import sqlite3
+
 
 
 def index(request):
@@ -56,6 +59,7 @@ def help_support(request):
 def ground_floor(request):
     return render(request, 'ground_floor.html')
 
+
 @login_required
 def seven_m(request):
     return render(request, '7m.html')
@@ -72,3 +76,50 @@ def dome(request):
 def ext_building(request):
     return render(request, 'extbuilding.html')
 
+def gf_pnumatical(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Units, Components, Replacement_Due, Failure_Mode FROM DOT_Components where Systems = 'Pnumatical System '")
+    row_list = []
+    for x in rows:
+        obj = DOTComponents(x[0],x[1],x[2],x[3],x[4],x[5])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'gf_pnumatical.html',{"gf_data":row_list})
+
+def gf_hydraulic (request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Units, Components, Replacement_Due, Failure_Mode FROM DOT_Components where Systems = 'Hydraulic System '")
+    row_list = []
+    for x in rows:
+        obj = DOTComponents(x[0],x[1],x[2],x[3],x[4],x[5])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'gf_hydraulic.html',{"gf_data":row_list})
+
+def gf_cooling (request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Units, Components, Replacement_Due, Failure_Mode FROM DOT_Components where Systems = 'Cooling System '")
+    row_list = []
+    for x in rows:
+        obj = DOTComponents(x[0],x[1],x[2],x[3],x[4],x[5])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'gf_cooling.html',{"gf_data":row_list})
+
+def gf_maintenance(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT * FROM DOT_Maintenance where levels like '%GF%'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Maintenance(x[0],x[1],x[2],x[3])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'gf_maintenance.html',{"gf_maintenance":row_list})
