@@ -4,9 +4,54 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as loginUser
 from django.contrib.auth import logout as logoutUser
-from .models import DOTComponents, DOT_Maintenance, DOT_Systems
+from .models import DOTComponents, DOT_Maintenance, DOT_Systems,MaintenanceDataEntry
 import sqlite3
 
+def CREATE_MAINTENENCE_ENTRY_TABLE_IF_NOT_EXIST():
+    table_name = "maintenance_entries"
+
+    columns = [
+        ("id", "INTEGER PRIMARY KEY AUTOINCREMENT"),           
+        ("system", "TEXT"),                      
+        ("task_detail", "TEXT"),                 
+        ("completion_date", "DATE"),             
+        ("responsible_user", "TEXT"),            
+        ("additional_note", "TEXT"),             
+    ]
+    connection = sqlite3.connect('DOT_Maintenance.db')
+    cursor = connection.cursor()
+    create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join([f'{col} {data_type}' for col, data_type in columns])})"
+    cursor.execute(create_table_query)
+    connection.commit()
+    connection.close()
+
+def insert_data_entry(data_entry):
+    connection = sqlite3.connect('DOT_Maintenance.db')
+    cursor = connection.cursor()
+
+    insert_query = f"INSERT INTO maintenance_entries (system, task_detail, completion_date, responsible_user, additional_note) " \
+                   f"VALUES (?, ?, ?, ?, ?)"
+    data_values = (data_entry.system, data_entry.task_detail, data_entry.completion_date,
+                   data_entry.responsible_user, data_entry.additional_note)
+    result = False
+    try:
+        # Execute the SQL query with the data values
+        cursor.execute(insert_query, data_values)
+
+        # Check if the query was successful
+        if cursor.rowcount > 0:
+            print("Query was successful. Rows affected:", cursor.rowcount)
+            result = True
+        else:
+            print("Query did not affect any rows.")
+    except Exception as e:
+        print("Error occurred:", e)
+
+    connection.commit()
+    connection.close()
+    return result
+
+CREATE_MAINTENENCE_ENTRY_TABLE_IF_NOT_EXIST()
 
 
 def index(request):
@@ -50,6 +95,12 @@ def maintenance_schedule(request):
 
 @login_required
 def maintenance_data_entry(request):
+    if request.method == "POST":
+        data = request.POST
+        data_entry = MaintenanceDataEntry(data["system"],data["task-details"],data["completion-date"],data["User"],data["notes"])
+        if insert_data_entry(data_entry):
+            return render(request, 'maintenance_data_entry.html', {'data_added': True})
+        
     return render(request, 'maintenance_data_entry.html')
 
 def help_support(request):
@@ -223,3 +274,4 @@ def building_maintenance(request):
     connection.close()
 
     return render(request, 'building_maintenance.html',{"building_maintenance":row_list})
+
