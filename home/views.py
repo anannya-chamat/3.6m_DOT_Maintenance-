@@ -171,3 +171,55 @@ def eleven_maintenance(request):
     connection.close()
 
     return render(request, '11m_maintenance.html',{"11m_maintenance":row_list})
+
+def dome_system(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Components, Replacement_Due, Failure_Mode FROM DOT_Systems where Floor = 'Dome'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Systems(x[0],x[1],x[2],x[3],x[4])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'dome_system.html',{"gf_data":row_list})
+
+def dome_maintenance(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT * FROM DOT_Maintenance where levels = 'Dome'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Maintenance(x[0],x[1],x[2],x[3])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'dome_maintenance.html',{"dome_maintenance":row_list})
+
+
+
+def building_system(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT Sr_no, Systems, Components, Replacement_Due, Failure_Mode FROM DOT_Systems where Systems like '%Ext%'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Systems(x[0],x[1],x[2],x[3],x[4])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'building_system.html',{"gf_data":row_list})
+ 
+
+
+def building_maintenance(request):
+    connection = sqlite3.connect("DOT_Maintenance.db")
+    print(connection)
+    rows = connection.execute("SELECT * FROM DOT_Maintenance where levels like '%Ext%'")
+    row_list = []
+    for x in rows:
+        obj = DOT_Maintenance(x[0],x[1],x[2],x[3])
+        row_list.append(obj)
+    connection.close()
+
+    return render(request, 'building_maintenance.html',{"building_maintenance":row_list})
