@@ -6,8 +6,15 @@
  <!-- BODY HERE ------------------------ -->
  <div class="content-container">
     <h1>Maintenance Data Entry</h1>
+
+    {% if data_added %}
+    <div id="data-alert" class="alert success" style="color: #414bc7;border-bottom: #414bc7 solid 5px;">
+        Data added successfully!
+    </div>
+    {% endif %}
     
     <form action="" method="POST" style="display: flex;">
+        {% csrf_token %}
       <div class="form-entry">
           <label for="system">Select System:</label>
           <select name="system" id="system" required>
@@ -40,5 +47,14 @@
   </form>
   
           </div>
+          <script>
+            // Get the data alert element
+            const dataAlert = document.getElementById('data-alert');
+            // Hide the data alert after 3 seconds
+            if(dataAlert)
+                setTimeout(function() {
+                    dataAlert.style.display = 'none';
+                }, 3000);
+        </script>
 
 {% endblock %}
