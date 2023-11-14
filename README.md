@@ -7,7 +7,7 @@
   <body>
     <h2><strong>Mechanical Systems Care Framework for 3.6m DOT</strong></h2>
     <h5>Designed to streamline maintenance processes, ensuring optimal performance for precision-driven mechanical systems in telescopes.</h5>
-    <h3><i>● Key Features</i></h3>
+    <h3><i>Key Features</i></h3>
     <ul>
   <li>Announcements and Maintenance Schedules: Stay informed and updated with crucial announcements concerning advancements and maintenance schedules.</li>
   <li>Personalized Experience: Secure login and registration options tailored to cater to the distinct roles and requirements of engineers, technicians, and telescope enthusiasts.</li>
